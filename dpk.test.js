@@ -6,7 +6,7 @@ describe("deterministicPartitionKey test", () => {
     expect(trivialKey).toBe("0");
   });
 
-  it("returns unhashed value when input is < 256 in length", () => {
+  it("returns unhashed value when partitionKey is < 256 in length", () => {
     const event = {
       partitionKey: "asdfghjklqwertyuiopzxcvbnm"
     };
