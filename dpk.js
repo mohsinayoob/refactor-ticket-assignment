@@ -10,7 +10,7 @@ const deterministicPartitionKey = (event) => {
   if (event.partitionKey) {
     const partitionKey = typeof event.partitionKey !== "string" ? JSON.stringify(event.partitionKey) : event.partitionKey;
     if (partitionKey.length > MAX_PARTITION_KEY_LENGTH) return generateHash(partitionKey);
-    
+
     return partitionKey
   }
 

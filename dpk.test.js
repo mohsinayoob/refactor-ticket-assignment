@@ -39,7 +39,7 @@ describe("deterministicPartitionKey test", () => {
       partitionKey: "ftnnkleixximtzmolptzuwedocqzsshmjmkvgwvdkauylapoevkbnrenheehxswojlqakbixeoqtbsvkyodpqfdmfakbqaumwrsmvvjatpntndnndfownuhoabfxcrkmknmbscrvuxowdjjzhhwswgalcxwqmdrrrdruizmrwfduxoronbumljhcytnhtfxhcqtmvyhmtxegvymzdybpodzdyxrkjjdjlnluspaazvtieirpglvxfgzygyovguzoqw"
     };
     const output = deterministicPartitionKey(event);
-    expect(output.length).toBe(128);
+    expect(output.length).toBe(128); //128 is length of sh3-512 hashed string
     expect(output).not.toBe(event.partitionKey);
   });
 
