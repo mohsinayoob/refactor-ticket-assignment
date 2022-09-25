@@ -1,12 +1,12 @@
 const { deterministicPartitionKey } = require("./dpk");
 
-describe("deterministicPartitionKey", () => {
-  it("Returns the literal '0' when given no input", () => {
+describe("deterministicPartitionKey test", () => {
+  it("returns the literal '0' when given no input", () => {
     const trivialKey = deterministicPartitionKey();
     expect(trivialKey).toBe("0");
   });
 
-  it("Returns unhashed value when input is < 256 in length", () => {
+  it("returns unhashed value when input is < 256 in length", () => {
     const event = {
       partitionKey: "asdfghjklqwertyuiopzxcvbnm"
     };
@@ -15,7 +15,7 @@ describe("deterministicPartitionKey", () => {
     expect(output).toBe("asdfghjklqwertyuiopzxcvbnm");
   });
 
-  it("Returns json value when type of partitionKey is NOT string and is < 256 in length", () => {
+  it("returns json value when type of partitionKey is NOT string and is < 256 in length", () => {
     const partitionKey = { p: "test" }
     const event = {
       partitionKey
@@ -24,7 +24,7 @@ describe("deterministicPartitionKey", () => {
     expect(output).toBe(JSON.stringify(partitionKey));
   });
 
-  it("Returns hashed value when type of partitionKey is NOT in event object", () => {
+  it("returns hashed value when type of partitionKey is NOT in event object", () => {
     const partitionKey1 = { p: "test" }
     const event = {
       partitionKey1
@@ -34,7 +34,7 @@ describe("deterministicPartitionKey", () => {
     expect(output).not.toBe(JSON.stringify(event));
   });
 
-  it("Returns hashed value when partitionKey is > 256 in length", () => {
+  it("returns hashed value when partitionKey is > 256 in length", () => {
     const event = {
       partitionKey: "ftnnkleixximtzmolptzuwedocqzsshmjmkvgwvdkauylapoevkbnrenheehxswojlqakbixeoqtbsvkyodpqfdmfakbqaumwrsmvvjatpntndnndfownuhoabfxcrkmknmbscrvuxowdjjzhhwswgalcxwqmdrrrdruizmrwfduxoronbumljhcytnhtfxhcqtmvyhmtxegvymzdybpodzdyxrkjjdjlnluspaazvtieirpglvxfgzygyovguzoqw"
     };
@@ -42,5 +42,5 @@ describe("deterministicPartitionKey", () => {
     expect(output.length).toBe(128);
     expect(output).not.toBe(event.partitionKey);
   });
-  
+
 });
